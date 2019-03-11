@@ -1,5 +1,5 @@
 package eseo.gestionhotel;
 
-public class testClass {
+public class TestClass {
 
 }
