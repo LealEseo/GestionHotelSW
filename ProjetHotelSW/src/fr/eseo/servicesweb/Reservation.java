@@ -1,4 +1,4 @@
-package eseo.gestionhotel;
+package fr.eseo.servicesweb;
 
 import java.sql.Date;
 
