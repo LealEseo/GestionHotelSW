@@ -1,4 +1,4 @@
-package eseo.gestionhotel;
+package fr.eseo.servicesweb;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -18,22 +18,22 @@ public class GestionHotelMethodes {
 			
 			Statement stmt = conn.createStatement();
 			
-			//Tous les attributs de la chambre en param�tre
+			//Tous les attributs de la chambre en paramètre
 			int nbPlaceLit_param = chambre.getNbPlaceLit();
 			String typeChambre_param = chambre.getTypeChambre();
 			float prixJournalier_param = chambre.getPrixJournalier();
 			
-			String sql_query = "SELECT c.* FROM Chambre c, Reservation r WHERE c.typeChambre LIKE '%'+typeChambre_param+'%\'" + 
-					if(nbPlaceLit_param != 0){" + 
-						sql_query+ = " and c.nbPlaceLit = "+ String.valueOf(nbPlace_param)" + 
-					}" + 
-					if(prixMin_param != 0){" + 
-						sql_query+= " and c.prixJournalier >= "+ String.valueOf(prixMin_param)" + 
-					}" + 
-					if(prixMax_param != 0){" + 
-						sql_query+= ' and c.prixJournalier <= '+ String.valueOf(prixMax_param)" + 
-					}" + 
-					sql_query+= ' and c.idChambre = r.idChambre and (r.dateDeb > \"'+dateFin_param+'\" or r.dateFin < \"'+dateDeb_param+'\");';";
+			String sql_query ='SELECT c.* FROM Chambre c, Reservation r WHERE c.typeChambre LIKE "%'+typeChambre_param+'%"';
+			if(nbPlaceLit_param != 0){
+				sql_query+ = ' and c.nbPlaceLit = '+ String.valueOf(nbPlace_param);
+			}
+			if(prixMin_param != 0){
+				sql_query+= ' and c.prixJournalier >= '+ String.valueOf(prixMin_param);
+			}
+			if(prixMax_param != 0){
+				sql_query+= ' and c.prixJournalier <= '+ String.valueOf(prixMax_param);
+			}
+			sql_query+= ' and c.idChambre = r.idChambre and (r.dateDeb > "'+dateFin_param+'" or r.dateFin < "'+dateDeb_param+'");';
 			ResultSet result = stmt.executeQuery(query);
 			
 			while(result.next()) { //Tant qu'il y a des lignes dispos 
@@ -69,7 +69,7 @@ public class GestionHotelMethodes {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/GestionHotel?user=root&password=");
 			
-			//R�cup�ration des informations relatives � la r�servation 
+			//Récupération des informations relatives à la réservation 
 			int idReservation= reservation.getIdReservation();
 			int idChambre_param = reservation.getIdChambre();
 			int idClient_param = reservation.getIdClient();
@@ -82,9 +82,9 @@ public class GestionHotelMethodes {
 			executebool = stmt.execute(insert);
 			
 			if(!executebool) {
-			System.out.print("Ex�cution r�ussie");
+			System.out.print("Exécution réussie");
 			}else {
-				System.out.print("Probl�me d'ex�cution");
+				System.out.print("Problème d'exécution");
 			}
 		
 			stmt.close();
@@ -106,9 +106,9 @@ public class GestionHotelMethodes {
 			executebool = stmt.execute(insert);
 			
 			if(!executebool) {
-			System.out.print("Ex�cution r�ussie");
+			System.out.print("Exécution réussie");
 			}else {
-				System.out.print("Probl�me d'ex�cution");
+				System.out.print("Problème d'exécution");
 			}
 		
 			stmt.close();
@@ -131,9 +131,9 @@ public class GestionHotelMethodes {
 			executebool = stmt.execute(insert);
 			
 			if(!executebool) {
-			System.out.print("Ex�cution r�ussie");
+			System.out.print("Exécution réussie");
 			}else {
-				System.out.print("Probl�me d'ex�cution");
+				System.out.print("Problème d'exécution");
 			}
 		
 			stmt.close();
