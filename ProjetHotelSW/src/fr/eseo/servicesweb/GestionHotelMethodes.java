@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class GestionHotelMethodes {
 
-	public Chambre[] trouverChambre(Chambre chambre) {
+	public Chambre[] trouverChambre(Chambre chambre, int prixMin_param, int prixMax_param, String dateFin_param, String dateDeb_param) {
 		Chambre[] chambre_array = null;
 		int i=0;
 		try {
@@ -23,18 +23,18 @@ public class GestionHotelMethodes {
 			String typeChambre_param = chambre.getTypeChambre();
 			float prixJournalier_param = chambre.getPrixJournalier();
 			
-			String sql_query ='SELECT c.* FROM Chambre c, Reservation r WHERE c.typeChambre LIKE "%'+typeChambre_param+'%"';
+			String sql_query ="SELECT c.* FROM Chambre c, Reservation r WHERE c.typeChambre LIKE '%"+typeChambre_param+"%'";
 			if(nbPlaceLit_param != 0){
-				sql_query+ = ' and c.nbPlaceLit = '+ String.valueOf(nbPlace_param);
+				sql_query+= "and c.nbPlaceLit = "+ String.valueOf(nbPlaceLit_param);
 			}
 			if(prixMin_param != 0){
-				sql_query+= ' and c.prixJournalier >= '+ String.valueOf(prixMin_param);
+				sql_query+= "and c.prixJournalier >= "+ String.valueOf(prixMin_param);
 			}
 			if(prixMax_param != 0){
-				sql_query+= ' and c.prixJournalier <= '+ String.valueOf(prixMax_param);
+				sql_query+= "and c.prixJournalier <= "+ String.valueOf(prixMax_param);
 			}
-			sql_query+= ' and c.idChambre = r.idChambre and (r.dateDeb > "'+dateFin_param+'" or r.dateFin < "'+dateDeb_param+'");';
-			ResultSet result = stmt.executeQuery(query);
+			sql_query+= "and c.idChambre = r.idChambre and (r.dateDeb > '"+dateFin_param+"' or r.dateFin < '"+dateDeb_param+"');";
+			ResultSet result = stmt.executeQuery(sql_query);
 			
 			while(result.next()) { //Tant qu'il y a des lignes dispos 
 				System.out.println("*****************");
