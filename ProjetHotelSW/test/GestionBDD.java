@@ -19,7 +19,7 @@ public class GestionBDD {
 			}else {
 				System.out.print("Problème d'exécution");
 			}
-			String query = "SELECT * FROM chambre";
+			String query = "SELECT * FROM Chambre";
 			ResultSet result = stmt.executeQuery(query);
 			
 			while(result.next()) { //Tant qu'il y a des lignes dispos 
