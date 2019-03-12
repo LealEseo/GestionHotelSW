@@ -18,6 +18,10 @@ public class Chambre {
 		this.nbPlaceLit = nbPlaceLit;
 		this.typeChambre = typeChambre;
 	}
+	
+	public Chambre() {
+		
+	}
 
 
 	public int getIdChambre() {

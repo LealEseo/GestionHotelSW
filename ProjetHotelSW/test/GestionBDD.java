@@ -8,10 +8,10 @@ public class GestionBDD {
 		
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel","root", "");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
 			
 			Statement stmt = conn.createStatement();
-			String insert = "INSERT INTO `chambre` (`idChambre`, `typeChambre`, `nbPlaceLit`, `prixJournalier`) VALUES ('02', 'chambre simple', '1', '25'))";
+			String insert = "INSERT INTO `chambre` (`idChambre`, `typeChambre`, `nbPlaceLit`, `prixJournalier`) VALUES (6, 'chambre simple', '1', '25')";
 			boolean executebool = stmt.execute(insert);
 			
 			if(!executebool) {
@@ -24,9 +24,9 @@ public class GestionBDD {
 			
 			while(result.next()) { //Tant qu'il y a des lignes dispos 
 				System.out.println("*****************");
-				System.out.println(result.getInt("Code"));
+				System.out.println(result.getInt("idChambre"));
 				System.out.println(result.getString(2));
-				System.out.println(result.getString("Auteur"));
+				System.out.println(result.getString("nbPlaceLit"));
 				System.out.println(result.getFloat(4));
 				System.out.println("*****************");
 			}
