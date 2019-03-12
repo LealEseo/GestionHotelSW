@@ -1,5 +1,5 @@
 
---Ajout de tables Chambres
+-- Ajout de tables Chambres
 
 INSERT INTO Chambre(typeCHambre, nbPlaceLit, prixJournalier) VALUES
 		("Chambre Simple", 1, 50);
