@@ -65,6 +65,7 @@ public class GestionHotelMethodes {
 	public int reserverChambre(Reservation reservation) {
 		int codeReservation=0;
 		boolean executebool = false;
+		ResultSet result=null;
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/GestionHotel?user=root&password=");
@@ -78,15 +79,21 @@ public class GestionHotelMethodes {
 			Date dateFin_param = reservation.getDateFin();
 			
 			Statement stmt = conn.createStatement();
-			String insert = "INSERT INTO Reservation (idChambre, idClient, dateDeb,dateFin, nbPlaces, paiementEffectue) VALUES ("+idChambre_param+","+idClient_param+",'"+dateDeb_param+"','"+dateFin_param+"',"+nbPlaces_param+",'0');";
+			String insert = "INSERT INTO Reservation (idChambre, idClient, dateDeb,dateFin, nbPlaces, paiementEffectue) VALUES ("+idChambre_param+","+idClient_param+",'"+dateDeb_param+"','"+dateFin_param+"',"+nbPlaces_param+",'0')";
 			executebool = stmt.execute(insert);
 			
 			if(!executebool) {
 			System.out.print("Exécution réussie");
+			
+			//Récupérer idReservation (clé primaire en Auto_increment) après insertion
+			String query= "SELECT idReservation FROM Reservation";
+			result = stmt.executeQuery(query);
+			codeReservation = result.getInt("idReservation");
+			
 			}else {
 				System.out.print("Problème d'exécution");
 			}
-		
+			result.close();
 			stmt.close();
 			conn.close();
 			
@@ -95,6 +102,8 @@ public class GestionHotelMethodes {
 		}
 		return codeReservation;
 	}
+	
+	
 	public boolean payerChambre(int codeReservation) {
 		boolean executebool = false;
 		try {
@@ -102,7 +111,7 @@ public class GestionHotelMethodes {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/GestionHotel?user=root&password=");
 			
 			Statement stmt = conn.createStatement();
-			String insert = "";
+			String insert = "UPDATE Reservation SET paiementEffectue = '1' WHERE idReservation = "+codeReservation;
 			executebool = stmt.execute(insert);
 			
 			if(!executebool) {
@@ -127,7 +136,7 @@ public class GestionHotelMethodes {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/GestionHotel?user=root&password=");
 			
 			Statement stmt = conn.createStatement();
-			String insert = "";
+			String insert = "DELETE FROM Reservation WHERE idReservation = "+codeReservation;
 			executebool = stmt.execute(insert);
 			
 			if(!executebool) {
