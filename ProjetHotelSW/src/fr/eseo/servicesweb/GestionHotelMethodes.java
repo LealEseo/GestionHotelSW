@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class GestionHotelMethodes {
 
-	public Chambre[] trouverChambre(Chambre chambre, int prixMin_param, int prixMax_param, String dateFin_param, String dateDeb_param) {
+	public Chambre[] trouverChambre(Chambre chambre, int prixMin_param, int prixMax_param, String dateDeb_param,String dateFin_param) {
 		Chambre[] chambre_array = null;
 		int i=0;
 		try {
