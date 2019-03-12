@@ -31,14 +31,6 @@ sql_query+= ' and c.idChambre = r.idChambre and (r.dateDeb > "'+dateFin_param+'"
 				+nbPlaces_param+",
 				'0');"
 
--- Recuperer le code de la reservation enregistree 
-
-"SELECT idReservation FROM Reservation WHERE idChambre="+idChambre_param+"
-										 AND idClient="+idClient_param+"
-										 AND dateDeb='"+dateDeb_param+"'
-										 AND dateFin='"+dateFin_param+"'
-										 AND nbPlaces="+nbPlaces_param+";"
-
 
 -- Payer une chambre (Validé)
 
