@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS Reservation;
 DROP TABLE IF EXISTS Client;
 DROP TABLE IF EXISTS Chambre;
 
---Creation Tables
+--Creation Table
 
 CREATE TABLE Chambre(
 idChambre  INT AUTO_INCREMENT ,
