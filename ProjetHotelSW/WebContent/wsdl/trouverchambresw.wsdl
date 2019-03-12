@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="TrouverChambreSWService" targetNamespace="http://test.servicesweb.eseo.fr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test.servicesweb.eseo.fr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://test.servicesweb.eseo.fr/" schemaLocation="trouverchambresw_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="trouverChambre">
+    <wsdl:part name="parameters" element="tns:trouverChambre">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="trouverChambreResponse">
+    <wsdl:part name="parameters" element="tns:trouverChambreResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SEITrouverChambreSW">
+    <wsdl:operation name="trouverChambre">
+      <wsdl:input name="trouverChambre" message="tns:trouverChambre">
+    </wsdl:input>
+      <wsdl:output name="trouverChambreResponse" message="tns:trouverChambreResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TrouverChambreSWServiceSoapBinding" type="tns:SEITrouverChambreSW">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="trouverChambre">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="trouverChambre">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="trouverChambreResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TrouverChambreSWService">
+    <wsdl:port name="TrouverChambreSWPort" binding="tns:TrouverChambreSWServiceSoapBinding">
+      <soap:address location="http://localhost:8080/ProjetGestionHotelSW/services/TrouverChambreSWPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

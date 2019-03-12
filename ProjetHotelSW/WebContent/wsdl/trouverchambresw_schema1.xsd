@@ -1,0 +1,32 @@
+<xs:schema xmlns:tns="http://test.servicesweb.eseo.fr/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://test.servicesweb.eseo.fr/" version="1.0">
+
+  <xs:element name="trouverChambre" type="tns:trouverChambre"/>
+
+  <xs:element name="trouverChambreResponse" type="tns:trouverChambreResponse"/>
+
+  <xs:complexType name="trouverChambre">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:chambre"/>
+      <xs:element name="arg1" type="xs:int"/>
+      <xs:element name="arg2" type="xs:int"/>
+      <xs:element minOccurs="0" name="arg3" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg4" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="chambre">
+    <xs:sequence>
+      <xs:element name="idChambre" type="xs:int"/>
+      <xs:element name="nbPlaceLit" type="xs:int"/>
+      <xs:element name="prixJournalier" type="xs:float"/>
+      <xs:element minOccurs="0" name="typeChambre" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="trouverChambreResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:chambre"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

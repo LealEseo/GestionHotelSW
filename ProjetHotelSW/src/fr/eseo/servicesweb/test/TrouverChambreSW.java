@@ -1,38 +1,40 @@
+package fr.eseo.servicesweb.test;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.jws.WebService;
+
 import fr.eseo.servicesweb.Chambre;
 
-public class TrouverChambreTest {
+@WebService(targetNamespace = "http://test.servicesweb.eseo.fr/", endpointInterface = "fr.eseo.servicesweb.test.SEITrouverChambreSW", portName = "TrouverChambreSWPort", serviceName = "TrouverChambreSWService")
+public class TrouverChambreSW implements SEITrouverChambreSW {
 
-	public static void main(String[] args) {
-		Chambre[] chambre_array = new Chambre[10];
-		Chambre chambre = new Chambre();
+	public Chambre[] trouverChambre(Chambre chambre, int prixMin_param, int prixMax_param, String dateDeb_param,String dateFin_param) {
+		Chambre[] chambre_array = new Chambre[100];
 		int i=0;
 		try {
-			int prixMin_param =200, prixMax_param=500;
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?user=root&password=");
 			
 			Statement stmt = conn.createStatement();
 			
 			//Tous les attributs de la chambre en paramètre
-			int nbPlaceLit_param = 4;
-			String typeChambre_param = "Suite";
+			int nbPlaceLit_param = chambre.getNbPlaceLit();
+			String typeChambre_param = chambre.getTypeChambre();
 			
 			String sql_query ="SELECT c.* FROM Chambre c, Reservation r WHERE c.typeChambre LIKE '%"+typeChambre_param+"%'";
 			if(nbPlaceLit_param != 0){
-				sql_query+= "and c.nbPlaceLit = "+ nbPlaceLit_param +" ";
+				sql_query+= "and c.nbPlaceLit = "+ String.valueOf(nbPlaceLit_param);
 			}
 			if(prixMin_param != 0){
-				sql_query+= "and c.prixJournalier >= "+ prixMin_param + " ";
-				//System.out.println(sql_query);
+				sql_query+= "and c.prixJournalier >= "+ String.valueOf(prixMin_param);
 			}
 			if(prixMax_param != 0){
-				sql_query+= "and c.prixJournalier <= "+ prixMax_param + " ";
+				sql_query+= "and c.prixJournalier <= "+ String.valueOf(prixMax_param);
 			}
 			//sql_query+= "and c.idChambre = r.idChambre and (r.dateDeb > '"+dateFin_param+"' or r.dateFin < '"+dateDeb_param+"');";
 			ResultSet result = stmt.executeQuery(sql_query);
@@ -51,7 +53,6 @@ public class TrouverChambreTest {
 				float prixJournalier = result.getFloat("prixJournalier");
 				chambre = new Chambre(idChambre, nbPlaceLit, typeChambre, prixJournalier);
 				chambre_array[i]=chambre;
-				//System.out.println("chambre : " + chambre_array[i].getTypeChambre());
 				i++;
 			}
 			result.close();
@@ -61,7 +62,6 @@ public class TrouverChambreTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		return chambre_array;
 	}
-
 }
