@@ -61,13 +61,11 @@ public class GestionHotelMethodes {
 	}
 			
 	public int reserverChambre(Reservation reservation) {
-		int codeReservation=0;
-		boolean executebool = false;
-		ResultSet result=null;
+		int codeReservation = 0;
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
-			
+			//System.out.println("Connection OK");
 			//Récupération des informations relatives à la réservation 
 			int idReservation= reservation.getIdReservation();
 			int idChambre_param = reservation.getIdChambre();
@@ -77,21 +75,26 @@ public class GestionHotelMethodes {
 			Date dateFin_param = reservation.getDateFin();
 			
 			Statement stmt = conn.createStatement();
-			String insert = "INSERT INTO Reservation (idChambre, idClient, dateDeb,dateFin, nbPlaces, paiementEffectue) VALUES ("+idChambre_param+","+idClient_param+",'"+dateDeb_param+"','"+dateFin_param+"',"+nbPlaces_param+",'0')";
-			executebool = stmt.execute(insert);
-			
+			//System.out.println("Statement OK");
+			String insert = "INSERT INTO Reservation (idChambre,idClient,dateDeb,dateFin,nbPlaces,paiementEffectue)"
+					+ "		VALUES ("+idChambre_param+","+idClient_param+",'"+dateDeb_param+"','"+dateFin_param+"',"+nbPlaces_param+",0)";
+			//System.out.println("insert : "+insert);
+			Boolean executebool = stmt.execute(insert);
+			//System.out.println(String.valueOf(result.next()));
 			if(!executebool) {
-			System.out.print("Exécution réussie");
-			
-			//Récupérer idReservation (clé primaire en Auto_increment) après insertion
-			String query= "SELECT LAST_INSERT_ID() as idReservation";
-			result = stmt.executeQuery(query);
-			codeReservation = result.getInt("idReservation");
-			
+				//System.out.print("Exécution réussie");
+				String verif = "SELECT idReservation FROM Reservation "
+						+ "			WHERE idChambre="+idChambre_param
+						+"			AND dateDeb='"+dateDeb_param
+						+"'			AND dateFin='"+dateFin_param
+						+"';";
+				//System.out.println("verif : "+verif);
+				ResultSet result = stmt.executeQuery(verif);
+				result.next();
+				codeReservation = result.getInt("idReservation");
 			}else {
 				System.out.print("Problème d'exécution");
 			}
-			result.close();
 			stmt.close();
 			conn.close();
 			
