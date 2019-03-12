@@ -9,7 +9,7 @@ public class PayerChambreTest {
 		boolean executebool = false;
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/GestionHotel?user=root&password=");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
 			
 			Statement stmt = conn.createStatement();
 			String insert = "UPDATE Reservation SET paiementEffectue = '1' WHERE idReservation = "+1;

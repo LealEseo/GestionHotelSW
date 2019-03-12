@@ -14,7 +14,7 @@ public class GestionHotelMethodes {
 		int i=0;
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?user=root&password=");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
 			Statement stmt = conn.createStatement();
 			
 			//Tous les attributs de la chambre en paramètre
@@ -66,7 +66,7 @@ public class GestionHotelMethodes {
 		ResultSet result=null;
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?user=root&password=");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
 			
 			//Récupération des informations relatives à la réservation 
 			int idReservation= reservation.getIdReservation();
@@ -106,7 +106,7 @@ public class GestionHotelMethodes {
 		boolean executebool = false;
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/GestionHotel?user=root&password=");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
 			
 			Statement stmt = conn.createStatement();
 			String insert = "UPDATE Reservation SET paiementEffectue = '1' WHERE idReservation = "+codeReservation;
@@ -137,7 +137,7 @@ public class GestionHotelMethodes {
 		try {
 			//Connexion à la BDD
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/GestionHotel?user=root&password=");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
 			
 			//Création de la requête 
 			Statement stmt = conn.createStatement();
