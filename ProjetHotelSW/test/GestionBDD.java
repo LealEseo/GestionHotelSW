@@ -8,10 +8,10 @@ public class GestionBDD {
 		
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/Biblioteque?user=admin&password=admin");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel","root", "");
 			
 			Statement stmt = conn.createStatement();
-			String insert = "INSERT INTO `Livres`(`Code`, `Titre`, `Auteur`, `Prix`) VALUES (104, 'Monsieur Claudomir', 'Marine damingo',14)";
+			String insert = "INSERT INTO `chambre` (`idChambre`, `typeChambre`, `nbPlaceLit`, `prixJournalier`) VALUES ('02', 'chambre simple', '1', '25'))";
 			boolean executebool = stmt.execute(insert);
 			
 			if(!executebool) {
