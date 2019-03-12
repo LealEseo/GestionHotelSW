@@ -11,6 +11,15 @@ public class Chambre {
 		this.typeChambre = typeChambre;
 		this.prixJournalier = prixJournalier;
 	}
+	
+	
+	public Chambre(int nbPlaceLit, String typeChambre) {
+		super();
+		this.nbPlaceLit = nbPlaceLit;
+		this.typeChambre = typeChambre;
+	}
+
+
 	public int getIdChambre() {
 		return idChambre;
 	}

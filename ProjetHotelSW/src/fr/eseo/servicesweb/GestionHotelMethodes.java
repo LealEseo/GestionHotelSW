@@ -14,14 +14,13 @@ public class GestionHotelMethodes {
 		int i=0;
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/GestionHotel?user=root&password=");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?user=root&password=");
 			
 			Statement stmt = conn.createStatement();
 			
 			//Tous les attributs de la chambre en paramètre
 			int nbPlaceLit_param = chambre.getNbPlaceLit();
 			String typeChambre_param = chambre.getTypeChambre();
-			float prixJournalier_param = chambre.getPrixJournalier();
 			
 			String sql_query ="SELECT c.* FROM Chambre c, Reservation r WHERE c.typeChambre LIKE '%"+typeChambre_param+"%'";
 			if(nbPlaceLit_param != 0){
@@ -33,7 +32,7 @@ public class GestionHotelMethodes {
 			if(prixMax_param != 0){
 				sql_query+= "and c.prixJournalier <= "+ String.valueOf(prixMax_param);
 			}
-			sql_query+= "and c.idChambre = r.idChambre and (r.dateDeb > '"+dateFin_param+"' or r.dateFin < '"+dateDeb_param+"');";
+			//sql_query+= "and c.idChambre = r.idChambre and (r.dateDeb > '"+dateFin_param+"' or r.dateFin < '"+dateDeb_param+"');";
 			ResultSet result = stmt.executeQuery(sql_query);
 			
 			while(result.next()) { //Tant qu'il y a des lignes dispos 
