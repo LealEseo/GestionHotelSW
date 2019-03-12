@@ -15,7 +15,6 @@ public class GestionHotelMethodes {
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?user=root&password=");
-			
 			Statement stmt = conn.createStatement();
 			
 			//Tous les attributs de la chambre en paramètre
@@ -67,7 +66,7 @@ public class GestionHotelMethodes {
 		ResultSet result=null;
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/GestionHotel?user=root&password=");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?user=root&password=");
 			
 			//Récupération des informations relatives à la réservation 
 			int idReservation= reservation.getIdReservation();
@@ -85,7 +84,7 @@ public class GestionHotelMethodes {
 			System.out.print("Exécution réussie");
 			
 			//Récupérer idReservation (clé primaire en Auto_increment) après insertion
-			String query= "SELECT idReservation FROM Reservation";
+			String query= "SELECT LAST_INSERT_ID() as idReservation";
 			result = stmt.executeQuery(query);
 			codeReservation = result.getInt("idReservation");
 			
@@ -128,16 +127,26 @@ public class GestionHotelMethodes {
 		return executebool;
 	}
 	
+	/**
+	 * Méthode pour annuler une réservation 
+	 * @param codeReservation : id de la réservation
+	 * @return
+	 */
 	public boolean annulerChambre(int codeReservation) {
 		boolean executebool= false;
 		try {
+			//Connexion à la BDD
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/GestionHotel?user=root&password=");
 			
+			//Création de la requête 
 			Statement stmt = conn.createStatement();
+			
+			//Suppression de la réservation choisie dans la BDD
 			String insert = "DELETE FROM Reservation WHERE idReservation = "+codeReservation;
 			executebool = stmt.execute(insert);
 			
+			//Vérifier que la requête s'est bien effectuée
 			if(!executebool) {
 			System.out.print("Exécution réussie");
 			}else {
@@ -150,6 +159,7 @@ public class GestionHotelMethodes {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return executebool;
+		//Si c'est faux, l'exécution est réussie donc on renvoie vrai à l'aplication web
+		return !executebool; 
 	}
 }

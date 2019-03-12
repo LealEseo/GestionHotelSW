@@ -6,6 +6,7 @@ import java.sql.Statement;
 
 import fr.eseo.servicesweb.Chambre;
 
+
 public class TrouverChambreTest {
 
 	public static void main(String[] args) {
@@ -16,7 +17,6 @@ public class TrouverChambreTest {
 			int prixMin_param =200, prixMax_param=500;
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
-			
 			Statement stmt = conn.createStatement();
 			
 			//Tous les attributs de la chambre en paramètre
