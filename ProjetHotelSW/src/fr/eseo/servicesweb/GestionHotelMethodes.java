@@ -13,7 +13,7 @@ import javax.jws.WebService;
 public class GestionHotelMethodes implements SEIGestionHotelMethodes {
 
 	public Chambre[] trouverChambre(Chambre chambre, int prixMin_param, int prixMax_param, String dateDeb_param,String dateFin_param) {
-		Chambre[] chambre_array = null;
+		Chambre[] chambre_array = new Chambre[100];
 		int i=0;
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
@@ -36,7 +36,7 @@ public class GestionHotelMethodes implements SEIGestionHotelMethodes {
 			}
 			//sql_query+= "and c.idChambre = r.idChambre and (r.dateDeb > '"+dateFin_param+"' or r.dateFin < '"+dateDeb_param+"');";
 			ResultSet result = stmt.executeQuery(sql_query);
-			
+			System.out.println("SQL QUERY :"+ sql_query);
 			while(result.next()) { //Tant qu'il y a des lignes dispos 
 				System.out.println("*****************");
 				System.out.println(result.getInt("idChambre"));
@@ -50,7 +50,9 @@ public class GestionHotelMethodes implements SEIGestionHotelMethodes {
 				String typeChambre = result.getString("typeChambre");
 				float prixJournalier = result.getFloat("prixJournalier");
 				chambre = new Chambre(idChambre, nbPlaceLit, typeChambre, prixJournalier);
+				System.out.println("chambre :"+ chambre.getIdChambre() + ", "+ chambre.getTypeChambre()+"," + chambre.getNbPlaceLit());
 				chambre_array[i]=chambre;
+				System.out.println(chambre_array[i]);
 				i++;
 			}
 			result.close();
