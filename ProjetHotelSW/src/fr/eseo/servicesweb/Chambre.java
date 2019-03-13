@@ -4,6 +4,7 @@ public class Chambre {
 	int idChambre, nbPlaceLit;
 	String typeChambre;
 	float prixJournalier;
+	
 	public Chambre(int idChambre, int nbPlaceLit, String typeChambre, float prixJournalier) {
 		super();
 		this.idChambre = idChambre;
