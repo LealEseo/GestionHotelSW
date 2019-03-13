@@ -1,0 +1,96 @@
+<xs:schema xmlns:tns="http://servicesweb.eseo.fr/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://servicesweb.eseo.fr/" version="1.0">
+
+  <xs:element name="annulerChambre" type="tns:annulerChambre"/>
+
+  <xs:element name="annulerChambreResponse" type="tns:annulerChambreResponse"/>
+
+  <xs:element name="payerChambre" type="tns:payerChambre"/>
+
+  <xs:element name="payerChambreResponse" type="tns:payerChambreResponse"/>
+
+  <xs:element name="reserverChambre" type="tns:reserverChambre"/>
+
+  <xs:element name="reserverChambreResponse" type="tns:reserverChambreResponse"/>
+
+  <xs:element name="trouverChambre" type="tns:trouverChambre"/>
+
+  <xs:element name="trouverChambreResponse" type="tns:trouverChambreResponse"/>
+
+  <xs:complexType name="reserverChambre">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:reservation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dateDeb" type="tns:date"/>
+      <xs:element minOccurs="0" name="dateFin" type="tns:date"/>
+      <xs:element name="idChambre" type="xs:int"/>
+      <xs:element name="idClient" type="xs:int"/>
+      <xs:element name="idReservation" type="xs:int"/>
+      <xs:element name="nbPlaces" type="xs:int"/>
+      <xs:element name="paiementEffectue" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="date">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="reserverChambreResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="trouverChambre">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:chambre"/>
+      <xs:element name="arg1" type="xs:int"/>
+      <xs:element name="arg2" type="xs:int"/>
+      <xs:element minOccurs="0" name="arg3" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg4" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="chambre">
+    <xs:sequence>
+      <xs:element name="idChambre" type="xs:int"/>
+      <xs:element name="nbPlaceLit" type="xs:int"/>
+      <xs:element name="prixJournalier" type="xs:float"/>
+      <xs:element minOccurs="0" name="typeChambre" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="trouverChambreResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:chambre"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="annulerChambre">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="annulerChambreResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="payerChambre">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="payerChambreResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

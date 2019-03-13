@@ -15,4 +15,15 @@
 			<bean class="org.apache.cxf.feature.LoggingFeature" />
 		</jaxws:features>
 	</jaxws:endpoint>
+	<jaxws:endpoint xmlns:tns="http://servicesweb.eseo.fr/"
+		id="gestionhotelmethodes"
+		implementor="fr.eseo.servicesweb.GestionHotelMethodes"
+		wsdlLocation="wsdl/gestionhotelmethodes.wsdl"
+		endpointName="tns:GestionHotelMethodesPort"
+		serviceName="tns:GestionHotelMethodesService"
+		address="/GestionHotelMethodesPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
 </beans>

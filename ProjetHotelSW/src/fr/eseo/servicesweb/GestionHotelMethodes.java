@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class GestionHotelMethodes {
+import javax.jws.WebService;
+
+@WebService(targetNamespace = "http://servicesweb.eseo.fr/", endpointInterface = "fr.eseo.servicesweb.SEIGestionHotelMethodes", portName = "GestionHotelMethodesPort", serviceName = "GestionHotelMethodesService")
+public class GestionHotelMethodes implements SEIGestionHotelMethodes {
 
 	public Chambre[] trouverChambre(Chambre chambre, int prixMin_param, int prixMax_param, String dateDeb_param,String dateFin_param) {
 		Chambre[] chambre_array = null;
