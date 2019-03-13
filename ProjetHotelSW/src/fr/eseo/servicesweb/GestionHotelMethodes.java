@@ -24,7 +24,7 @@ public class GestionHotelMethodes implements SEIGestionHotelMethodes {
 			int nbPlaceLit_param = chambre.getNbPlaceLit();
 			String typeChambre_param = chambre.getTypeChambre();
 			
-			String sql_query ="SELECT distinct c.* FROM Chambre c, Reservation r WHERE c.typeChambre LIKE '%"+typeChambre_param+"%'";
+			String sql_query = "SELECT DISTINCT c.* FROM chambre c LEFT JOIN reservation r ON c.idChambre=r.idChambre WHERE c.typeChambre LIKE '%"+typeChambre_param+"%'";
 			if(nbPlaceLit_param != 0){
 				sql_query+= " and c.nbPlaceLit = "+ String.valueOf(nbPlaceLit_param);
 			}
@@ -34,7 +34,7 @@ public class GestionHotelMethodes implements SEIGestionHotelMethodes {
 			if(prixMax_param != 0){
 				sql_query+= " and c.prixJournalier <= "+ String.valueOf(prixMax_param);
 			}
-			//sql_query+= "and c.idChambre = r.idChambre and (r.dateDeb > '"+dateFin_param+"' or r.dateFin < '"+dateDeb_param+"');";
+			sql_query+= " and ((r.dateDeb IS NULL AND r.dateFin IS NULL) OR (r.dateDeb > '"+dateFin_param+"' OR r.dateFin < '"+dateDeb_param+"'));";
 			ResultSet result = stmt.executeQuery(sql_query);
 			System.out.println("SQL QUERY :"+ sql_query);
 			while(result.next()) { //Tant qu'il y a des lignes dispos 
