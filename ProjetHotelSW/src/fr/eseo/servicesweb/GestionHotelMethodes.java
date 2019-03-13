@@ -26,13 +26,13 @@ public class GestionHotelMethodes implements SEIGestionHotelMethodes {
 			
 			String sql_query ="SELECT c.* FROM Chambre c, Reservation r WHERE c.typeChambre LIKE '%"+typeChambre_param+"%'";
 			if(nbPlaceLit_param != 0){
-				sql_query+= "and c.nbPlaceLit = "+ String.valueOf(nbPlaceLit_param);
+				sql_query+= " and c.nbPlaceLit = "+ String.valueOf(nbPlaceLit_param);
 			}
 			if(prixMin_param != 0){
-				sql_query+= "and c.prixJournalier >= "+ String.valueOf(prixMin_param);
+				sql_query+= " and c.prixJournalier >= "+ String.valueOf(prixMin_param);
 			}
 			if(prixMax_param != 0){
-				sql_query+= "and c.prixJournalier <= "+ String.valueOf(prixMax_param);
+				sql_query+= " and c.prixJournalier <= "+ String.valueOf(prixMax_param);
 			}
 			//sql_query+= "and c.idChambre = r.idChambre and (r.dateDeb > '"+dateFin_param+"' or r.dateFin < '"+dateDeb_param+"');";
 			ResultSet result = stmt.executeQuery(sql_query);
