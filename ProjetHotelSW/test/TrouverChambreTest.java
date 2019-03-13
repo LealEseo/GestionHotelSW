@@ -23,7 +23,7 @@ public class TrouverChambreTest {
 			int nbPlaceLit_param = 4;
 			String typeChambre_param = "Suite";
 			
-			String sql_query ="SELECT c.* FROM Chambre c, Reservation r WHERE c.typeChambre LIKE '%"+typeChambre_param+"%'";
+			String sql_query ="SELECT distinct c.* FROM Chambre c, Reservation r WHERE c.typeChambre LIKE '%"+typeChambre_param+"%'";
 			if(nbPlaceLit_param != 0){
 				sql_query+= "and c.nbPlaceLit = "+ nbPlaceLit_param +" ";
 			}
