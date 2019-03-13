@@ -52,7 +52,7 @@ public class GestionHotelMethodes implements SEIGestionHotelMethodes {
 				chambre = new Chambre(idChambre, nbPlaceLit, typeChambre, prixJournalier);
 				System.out.println("chambre :"+ chambre.getIdChambre() + ", "+ chambre.getTypeChambre()+"," + chambre.getNbPlaceLit());
 				chambre_array[i]=chambre;
-				System.out.println(chambre_array[i]);
+				System.out.println(chambre_array[i].toString());
 				i++;
 			}
 			result.close();
