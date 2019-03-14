@@ -19,6 +19,7 @@ prenom  VARCHAR(20) NOT NULL ,
 addresse  VARCHAR(40) ,
 email  VARCHAR(30) ,
 numTelephone  VARCHAR(10),
+password VARCHAR(20)
 primary key(idClient)
 );
 
