@@ -176,7 +176,7 @@ public class GestionHotelMethodesBis implements SEIGestionHotelMethodeBis  {
 		int idClient = 0;
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
 			//System.out.println(conn.toString());
 			//Création de la requête 
 			Statement stmt = conn.createStatement();
