@@ -26,4 +26,16 @@
 			<bean class="org.apache.cxf.feature.LoggingFeature" />
 		</jaxws:features>
 	</jaxws:endpoint>
+	<jaxws:endpoint
+		xmlns:tns="http://serviceswebbis.eseo.fr/"
+		id="gestionhotelmethodesbis"
+		implementor="fr.eseo.serviceswebbis.GestionHotelMethodesBis"
+		wsdlLocation="wsdl/gestionhotelmethodesbis.wsdl"
+		endpointName="tns:GestionHotelMethodesBisPort"
+		serviceName="tns:GestionHotelMethodesBisService"
+		address="/GestionHotelMethodesBisPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
 </beans>

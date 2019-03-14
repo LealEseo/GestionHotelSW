@@ -1,4 +1,4 @@
-package fr.eseo.servicesweb;
+package fr.eseo.serviceswebbis;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,8 +9,9 @@ import java.sql.Statement;
 
 import javax.jws.WebService;
 
-@WebService(targetNamespace = "http://servicesweb.eseo.fr/", endpointInterface = "fr.eseo.servicesweb.SEIGestionHotelMethodesBis", portName = "GestionHotelMethodesPort", serviceName = "GestionHotelMethodesService")
-public class GestionHotelMethodes implements SEIGestionHotelMethodes, SEIGestionHotelMethodesBis {
+
+@WebService(targetNamespace = "http://serviceswebbis.eseo.fr/", endpointInterface = "fr.eseo.serviceswebbis.SEIGestionHotelMethodeBis", portName = "GestionHotelMethodesBisPort", serviceName = "GestionHotelMethodesBisService")
+public class GestionHotelMethodesBis implements SEIGestionHotelMethodeBis  {
 
 	public Chambre[] trouverChambre(Chambre chambre, int prixMin_param, int prixMax_param, String dateDeb_param,String dateFin_param) {
 		Chambre[] chambre_array = new Chambre[100];
@@ -196,3 +197,4 @@ public class GestionHotelMethodes implements SEIGestionHotelMethodes, SEIGestion
 		return idClient;
 	}
 }
+

@@ -1,8 +1,12 @@
-<xs:schema xmlns:tns="http://servicesweb.eseo.fr/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://servicesweb.eseo.fr/" version="1.0">
+<xs:schema xmlns:tns="http://serviceswebbis.eseo.fr/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://serviceswebbis.eseo.fr/" version="1.0">
 
   <xs:element name="annulerChambre" type="tns:annulerChambre"/>
 
   <xs:element name="annulerChambreResponse" type="tns:annulerChambreResponse"/>
+
+  <xs:element name="connexion" type="tns:connexion"/>
+
+  <xs:element name="connexionResponse" type="tns:connexionResponse"/>
 
   <xs:element name="payerChambre" type="tns:payerChambre"/>
 
@@ -15,6 +19,43 @@
   <xs:element name="trouverChambre" type="tns:trouverChambre"/>
 
   <xs:element name="trouverChambreResponse" type="tns:trouverChambreResponse"/>
+
+  <xs:complexType name="payerChambre">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="payerChambreResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="annulerChambre">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="annulerChambreResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="connexion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="connexionResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
 
   <xs:complexType name="reserverChambre">
     <xs:sequence>
@@ -66,30 +107,6 @@
   <xs:complexType name="trouverChambreResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:chambre"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="annulerChambre">
-    <xs:sequence>
-      <xs:element name="arg0" type="xs:int"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="annulerChambreResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:boolean"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="payerChambre">
-    <xs:sequence>
-      <xs:element name="arg0" type="xs:int"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="payerChambreResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
 

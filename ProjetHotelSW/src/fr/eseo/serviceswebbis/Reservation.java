@@ -1,4 +1,4 @@
-package fr.eseo.servicesweb;
+package fr.eseo.serviceswebbis;
 
 import java.sql.Date;
 
