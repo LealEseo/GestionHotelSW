@@ -1,17 +1,17 @@
 
 --Trouver une chambre à partir d'une chambre demandée par le client
 
-sql_query = "SELECT DISTINCT c.* FROM chambre c LEFT JOIN reservation r ON c.idChambre=r.idChambre WHERE c.typeChambre LIKE '%"+typeChambre_param+"%'";
-			if(nbPlaceLit_param != 0){
-				sql_query+= " and c.nbPlaceLit = "+ String.valueOf(nbPlaceLit_param);
-			}
-			if(prixMin_param != 0){
-				sql_query+= " and c.prixJournalier >= "+ String.valueOf(prixMin_param);
-			}
-			if(prixMax_param != 0){
-				sql_query+= " and c.prixJournalier <= "+ String.valueOf(prixMax_param);
-			}
-			sql_query+= " and ((r.dateDeb IS NULL AND r.dateFin IS NULL) OR (r.dateDeb > '"+dateFin_param+"' OR r.dateFin < '"+dateDeb_param+"'));";
+sql_query = 'SELECT DISTINCT c.* FROM chambre c LEFT JOIN reservation r ON c.idChambre=r.idChambre WHERE c.typeChambre LIKE "%'+typeChambre_param+'%"';
+if(nbPlaceLit_param != 0){
+	sql_query+ = ' and c.nbPlaceLit = '+ String.valueOf(nbPlace_param);
+}
+if(prixMin_param != 0){
+	sql_query+= ' and c.prixJournalier >= '+ String.valueOf(prixMin_param);
+}
+if(prixMax_param != 0){
+	sql_query+= ' and c.prixJournalier <= '+ String.valueOf(prixMax_param);
+}
+sql_query+= " and ((r.dateDeb IS NULL AND r.dateFin IS NULL) OR (r.dateDeb > '"+dateFin_param+"' OR r.dateFin < '"+dateDeb_param"'));";
 
 
 -- Réserver une chambre (Validé)
