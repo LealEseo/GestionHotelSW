@@ -12,7 +12,7 @@ public class ConnexionTest {
 		try {
 			//INSERT INTO `client`(`idClient`, `nom`, `prenom`, `addresse`, `email`, `numTelephone`, `password`) VALUES (1,'nomTest', 'prenomTest', 'adresseTest','emailTest@hotmail.fr','0616645151','test')
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/gestionhotel?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
 			System.out.println(conn.toString());
 			//Création de la requête 
 			Statement stmt = conn.createStatement();
